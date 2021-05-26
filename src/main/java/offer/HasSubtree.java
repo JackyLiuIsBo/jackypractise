@@ -10,29 +10,60 @@ public class HasSubtree {
     public static void main(String[] args) {
 
     }
-    public boolean HasSubtree(TreeNode root1,TreeNode root2) {
-        boolean isTrue = false;
-        if (root1.val == root2.val){
-            isTrue = isSame(root1,root2);
-        }
-        if (!isTrue) {
-           isTrue = HasSubtree(root1.left, root2) || HasSubtree(root1.right, root2);
-        }
-        return isTrue;
-    }
-    public boolean isSame(TreeNode left,TreeNode right){
 
-        if (left == null && right != null){
+    public boolean HasSubtree(TreeNode root1,TreeNode root2) {
+
+        if (root1 == null){
             return false;
         }
-        if (right == null){
+        if (isSubtree(root1,root2)){
             return true;
         }
-        if (right.val == left.val){
-            return isSame(left.right,right.right) && isSame(left.left,right.left);
+
+       return HasSubtree(root1.left,root2) || HasSubtree(root1.right,root2);
+
+
+
+    }
+
+    private boolean isSubtree(TreeNode root1, TreeNode root2) {
+
+        if (root2 == null){
+            return true;
+        }
+
+        if ((root1 == null && root2 != null) || root1.val != root2.val){
+            return false;
+        }
+        if (root1.val == root2.val) {
+            return  isSubtree(root1.left, root2.left) && isSubtree(root1.right, root2.right);
         }
         return false;
     }
+
+    //public boolean HasSubtree(TreeNode root1,TreeNode root2) {
+    //    boolean isTrue = false;
+    //    if (root1.val == root2.val){
+    //        isTrue = isSame(root1,root2);
+    //    }
+    //    if (!isTrue) {
+    //       isTrue = HasSubtree(root1.left, root2) || HasSubtree(root1.right, root2);
+    //    }
+    //    return isTrue;
+    //}
+    //public boolean isSame(TreeNode left,TreeNode right){
+    //
+    //    if (left == null && right != null){
+    //        return false;
+    //    }
+    //    if (right == null){
+    //        return true;
+    //    }
+    //    if (right.val == left.val){
+    //        return isSame(left.right,right.right) && isSame(left.left,right.left);
+    //    }
+    //    return false;
+    //}
 
 
 

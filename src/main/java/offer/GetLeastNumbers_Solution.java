@@ -13,10 +13,14 @@ public class GetLeastNumbers_Solution {
         for (Integer n:array
              ) {
             list.add(n);
+            if (n <= num)
             System.out.println(n);
         }
         return list;
     }
+
+
+
     public static void partitionSort(int[] nums, int low, int high, int K) {
         if (low < high) {
             int pointKey = partitionSortCore(nums, low, high);

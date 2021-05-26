@@ -1,8 +1,7 @@
 package offer;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.PriorityQueue;
+
+import java.util.*;
 
 /**
  * 给定一个数组和滑动窗口的大小，
@@ -22,12 +21,11 @@ public class MaxWindow {
         }
     }
     public static ArrayList<Integer> maxInWindows(int [] num, int size){
-        PriorityQueue<Integer> queue = new PriorityQueue<>(new Comparator<Integer>() {
-            @Override
-            public int compare(Integer o1, Integer o2) {
-                return o2 - o1;
-            }
-        });
+        PriorityQueue<Integer> queue = new PriorityQueue<>((t1,t2)-> t2 - t1);
+
+        //PriorityQueue<Integer> queue = new PriorityQueue<>(
+        //    (t1,t2)-> t2 - t1);
+
         ArrayList<Integer> list = new ArrayList<>();
         if (num.length < size){
             return list;

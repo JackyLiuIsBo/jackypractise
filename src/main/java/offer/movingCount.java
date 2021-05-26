@@ -10,13 +10,103 @@ package offer;
  *
  */
 public class movingCount {
+
+    public static void main(String[] args) {
+        //int n = getSum(20);
+        //System.out.println(n);
+        int i = movingCount2(5, 10, 10);
+        add(count);
+        System.out.println(count);
+    }
+
+    private static void add(int count){
+
+        count++;
+    }
+
+    static int right = 0;
+    static int down = 0;
+    static int count = 0 ;
+
+    public static int movingCount2(int threshold, int rows, int cols) {
+
+
+        right = cols;
+        down = rows;
+        boolean[][] isSteped = new boolean[rows][cols];
+
+        return getStepNum(threshold,0,0,count,isSteped);
+
+    }
+
+    private static int getStepNum(int threashold,int row,int col,int count,boolean isStep[][]){
+
+        if( row < 0 || col < 0 || row > down || col > right || isStep[row][col] || calculate(row) + calculate(col) > threashold){
+            return 0;
+        }
+        isStep[row][col] = true;
+        count++;
+        return 1 + getStepNum(threashold,row-1,col,count,isStep)+
+            getStepNum(threashold,row+1,col,count,isStep)+
+            getStepNum(threashold,row,col-1,count,isStep)+
+            getStepNum(threashold,row,col+1,count,isStep);
+    }
+
+
+    private static int calculate(int num){
+        int result = 0;
+        while(num > 0){
+            result += num % 10;
+            num = num / 10;
+        }
+        return result ;
+    }
      static int index = 0;
     public static int movingCount(int threshold, int rows, int cols)
     {
         boolean [][] flag = new boolean[rows][cols];
 
-       return judge(flag,threshold,0,0,rows,cols);
+       return judges(flag,threshold,0,0,rows,cols);
     }
+
+    private static int judges(boolean[][] flag, int threshold, int row, int col, int rows, int cols) {
+
+        if ( row < 0 || col < 0|| row >= rows ||  col >= cols || flag[row][col] || (getSum(row) + getSum(col) > threshold) ){
+            return 0;
+        }
+
+        flag[row][col] = true;
+
+        index++;
+
+        judges(flag,threshold,row+1,col,rows,cols);
+        judges(flag,threshold,row-1,col,rows,cols);
+        judges(flag,threshold,row,col+1,rows,cols);
+        judges(flag,threshold,row,col-1,rows,cols);
+
+        return index;
+    }
+
+    private  static int getSum(int num){
+        int sum = 0;
+        while (num > 0){
+            int temp = num % 10;
+            sum += temp;
+            num = num / 10;
+        }
+        return sum;
+    }
+
+
+
+
+
+
+
+
+
+
+
 
     public static int judge(boolean[][] flag,int threshold,int i,int j,int row,int cols){
 
@@ -45,13 +135,7 @@ public class movingCount {
         return temp;
     }
 
-    public static void main(String[] args) {
-        int i = movingCount(15,20,20);
-         int n = split(20);
-        System.out.println(i);
-        System.out.println(n);
 
-    }
 
 
 

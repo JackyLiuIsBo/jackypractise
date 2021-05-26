@@ -5,10 +5,13 @@ package offer;
  * 4 5 2 1 3
  */
 
+import java.util.HashSet;
 import java.util.Scanner;
 
 public class backPack {
     public static void main(String[] args) {
+        HashSet set = new HashSet();
+
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
         int V = scanner.nextInt();

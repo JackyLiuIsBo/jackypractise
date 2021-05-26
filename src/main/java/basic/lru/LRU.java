@@ -2,44 +2,68 @@ package basic.lru;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class LRU <K,V>{
 
-    private final int SIZE;
-    private  float LOADFACTORY = 0.75f;
-    LinkedHashMap<K,V> hashMap;
-    public LRU(){
+    private int size;
+
+    private float loadFactory;
+
+    private LinkedHashMap<K,V> map ;
+
+    LRU(){
         this(16,0.75f);
     }
-    public LRU(int size){
-        this(size,0.75F);
+
+    LRU(int size){
+        this(size,0.75f);
     }
-    public LRU(int SIZE, float LOADFACTORY) {
-        this.SIZE = SIZE;
-        this.LOADFACTORY = LOADFACTORY;
-         hashMap = new LinkedHashMap(SIZE,LOADFACTORY,true){
+
+    LRU(int size,float loadFactory){
+        this.size = size;
+        this.loadFactory = loadFactory;
+        map = new LinkedHashMap<K, V>(size,loadFactory,true){
             @Override
-            protected boolean removeEldestEntry(Map.Entry eldest) {
-                return size() > SIZE;
+            protected boolean removeEldestEntry(Entry eldest) {
+                return size() > size;
             }
         };
     }
-    public void put(K key,V value){
-        hashMap.put(key,value);
+
+    public V put(K key,V value){
+       return map.put(key,value);
     }
 
     public V get(K key){
-        return hashMap.get(key);
+        return map.get(key);
     }
 
     @Override
     public String toString(){
         StringBuilder str = new StringBuilder();
-        for (Map.Entry entry:hashMap.entrySet()){
-            str.append(entry.getKey() + ""+ entry.getValue()+" ");
-        }
+        map.entrySet().stream().forEach(entry -> {
+            str.append(entry.getKey() + "  ");
+        });
         return str.toString();
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /*private final int SIZE;
         private final float LOAD_FACTORY = 0.75F;
         LinkedHashMap<K,V> hashMap;
@@ -78,7 +102,7 @@ public class LRU <K,V>{
         }
     */
     public static void main(String[] args) {
-        LRU<Integer,Integer> lru = new LRU(5);
+        LRU<Integer,Integer> lru = new LRU(3);
         lru.put(1,1);
         lru.put(2,2);
         lru.put(3,3);
@@ -86,8 +110,8 @@ public class LRU <K,V>{
         lru.get(1);
         System.out.println(lru);
         lru.put(5,5);
-        lru.put(6,6);
-        lru.put(7,7);
+        //lru.put(6,6);
+        //lru.put(7,7);
         System.out.println(lru);
     }
 }

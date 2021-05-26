@@ -5,32 +5,36 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class ReadAndWriteLock {
-    static HashMap<String,Object> hashMap = new HashMap<>();
+    static HashMap<String, Object> hashMap = new HashMap<>();
     static ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
     static Lock r = lock.readLock();
     static Lock w = lock.writeLock();
-    public <T> T get(String key){
-            r.lock();
-        T value = (T) hashMap.get(key);
+
+    public <T> T get(String key) {
+        T value = null;
+        r.lock();
+        try {
+            value = (T)hashMap.get(key);
+        } finally {
             r.unlock();
-            return value;
+        }
+        return value;
     }
 
-    public void put(String key,Object value){
+    public void put(String key, Object value) {
         w.lock();
-        hashMap.put(key,value);
+        hashMap.put(key, value);
         w.unlock();
     }
 
     public static void main(String[] args) {
         ReadAndWriteLock lock = new ReadAndWriteLock();
-        final   int count =1 ;
-        for (int i = 0; i < 5; i++){
+        final int count = 1;
+        for (int i = 0; i < 5; i++) {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-
-                    lock.put("shit",count);
+                    lock.put("shit", count);
                 }
             }).start();
 

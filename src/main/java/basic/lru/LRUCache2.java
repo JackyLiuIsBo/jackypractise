@@ -52,7 +52,7 @@ public class LRUCache2<K,V> {
         lru.put("C", 1);
         lru.put("A", 2);
         lru.put("D", 3);
-        lru.put("C",4);
+        lru.put("E",4);
         System.out.println(lru);
         Integer c = lru.get("C");
         lru.put("B", null);

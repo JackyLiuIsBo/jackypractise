@@ -7,30 +7,60 @@ package offer;
  */
 public class HashPath {
     public static void main(String[] args) {
-        boolean b = hasPath("ABCEHJIGSFCSLOPQADEEMNOEADIDEJFMVCEIFGGS".toCharArray(), 5, 8, "SGGFIECVAASABCEHJIGQEM".toCharArray());
+        boolean b = hasPaths("ABCEHJIGSFCSLOPQADEEMNOEADIDEJFMVCEIFGGS".toCharArray(), 5, 8, "SGGFIECVAASABCEHJIGQEM".toCharArray());
         System.out.println(b);
     }
-    public static boolean hasPath(char[] matrix, int rows, int cols, char[] str) {
-        boolean[][]flag = new boolean[rows][cols];
+
+    public static boolean hasPaths(char[] matrix, int rows, int cols, char[] str) {
         for (int i = 0; i < rows; i++){
             for (int j = 0; j < cols; j++){
-                if(judge(matrix,rows,cols,i,j,flag,str,0)){
-                    return true;
+                if (matrix[i*cols + j] == str[0]) {
+                   if (isRightPath(matrix,str,rows,cols,i,j,0)){
+                       return true;
+                   }
                 }
             }
         }
-       // boolean[] flag = new boolean[rows*cols];
+        return false;
+    }
+
+    private static boolean isRightPath(char[] matrix, char[] str, int rows, int cols, int i, int j, int count) {
+
+        if (i < 0 || j < 0 || i >= rows || j >= cols || matrix[i*cols + j] == '0' || matrix[i*cols + j] != str[count]) {
+            return false;
+        }
+
+        if (count == str.length-1){
+            return true;
+        }
+
+        char temp = matrix[i*cols + j];
+        matrix[i*cols + j] = '0';
+
+        boolean flag = isRightPath(matrix,str,rows,cols,i+1,j,count+1)
+                    || isRightPath(matrix,str,rows,cols,i-1,j,count+1)
+                    || isRightPath(matrix,str,rows,cols,i,j-1,count+1)
+                    || isRightPath(matrix,str,rows,cols,i,j+1,count+1);
+
+
+        if (flag){
+            return true;
+        }
+
+        matrix[i*cols + j] = temp;
 
         return false;
     }
 
     private static boolean judge(char[] matrix, int rows, int cols, int i, int j, boolean[][] flag, char[] str,int k) {
-        if (i < 0 || j < 0 || i >= rows || j >= cols || flag[i][j] || matrix[i*cols + j] != str[k]){
+        if (i < 0 || j < 0 || i >= rows || j >= cols || matrix[i*cols + j]=='0' || matrix[i*cols + j] != str[k]){
             return false;
         }
         if (k == str.length-1){
             return true;
         }
+        char temp = matrix[i*cols + j];
+        matrix[i*cols + j] = '0';
         flag[i][j] = true;
         if (judge(matrix,rows,cols,i-1,j,flag,str,k+1)||
                 judge(matrix,rows,cols,i,j-1,flag,str,k+1)||
@@ -38,12 +68,13 @@ public class HashPath {
                 judge(matrix,rows,cols,i,j+1,flag,str,k+1)){
             return true;
         }
+        matrix[i*cols + j] = temp;
         flag[i][j] = false;
         return false;
 
     }
 
-      /*  public static boolean judge1(char[] array, int i, int j, int rows, int cols, boolean[][] flag, char[] str, int k) {
+        public static boolean judge1(char[] array, int i, int j, int rows, int cols, boolean[][] flag, char[] str, int k) {
 
                 if(i < 0 || j < 0 || i >= rows || j >= cols || flag[i][j] || array[i*cols+j] != str[k] ){
                     return false;
@@ -85,7 +116,7 @@ public class HashPath {
         //走到这，说明这一条路不通，还原，再试其他的路径
         flag[index] = false;
         return false;
-    }*/
+    }
 
 
 

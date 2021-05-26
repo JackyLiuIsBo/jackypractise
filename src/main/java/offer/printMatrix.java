@@ -11,6 +11,23 @@ public class printMatrix {
             System.out.println(n);
         }
     }
+    //
+    //public static ArrayList<Integer> printMatrixs(int [][] matrix) {
+    //
+    //}
+
+
+
+
+
+
+
+
+
+
+
+
+
     public static ArrayList<Integer> printMatrix(int [][] matrix) {
         int r1 = 0,r2 = matrix.length ;
         int l1 = 0,l2 = matrix[0].length ;

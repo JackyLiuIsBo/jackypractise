@@ -13,29 +13,48 @@ public class FindPath {
     ArrayList<ArrayList<Integer>> lists = new ArrayList<>();
     ArrayList<Integer> list = new ArrayList<>();
     public ArrayList<ArrayList<Integer>> FindPath(TreeNode root, int target) {
+
         if (root == null){
             return lists;
         }
-        target -= root.val;
         list.add(root.val);
-        if (root.left == null && root.left == null && target == 0){
+
+        if (root.val == target && root.left == null && root.right == null){
+
             lists.add(new ArrayList<>(list));
         }
 
-        FindPath(root.left,target);
-        FindPath(root.right,target);
+        if (root.left != null){
+
+            FindPath(root.left,target-root.val);
+        }
+
+        if (root.right != null){
+
+            FindPath(root.right,target - root.val);
+        }
+
         list.remove(list.size()-1);
+
         return lists;
-
-
-
-
-
-
-
-
-
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*        if (root == null){
             return lists;
         }

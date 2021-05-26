@@ -22,6 +22,8 @@ public class ThreadLocalTest {
     public static void main(String[] args) throws InterruptedException {
         Long startTime = ThreadLocalTest.getStartTime();
         ReentrantLock lock = new ReentrantLock();
+
+
         Condition condition = lock.newCondition();
         Thread.sleep(1000);
         Long endTime = ThreadLocalTest.getEndTime();

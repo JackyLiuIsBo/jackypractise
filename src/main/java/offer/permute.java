@@ -1,5 +1,6 @@
 package offer;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -9,7 +10,7 @@ public class permute {
         permute permute = new permute();
         int [] nums = {1,2,3};
         List<List<Integer>> permute1 = permute.permute(nums);
-
+        System.out.println(Arrays.toString(permute1.toArray()));
     }
     public List<List<Integer>> permute(int[] nums) {
         HashSet<List<Integer>> hashSet = new HashSet<>();

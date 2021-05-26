@@ -22,6 +22,17 @@ public class CountLatchTest {
                 countDownLatch.countDown();
             }
         }).start();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("third time");
+            }
+        }).start();
         try {
             countDownLatch.await();
         } catch (InterruptedException e) {

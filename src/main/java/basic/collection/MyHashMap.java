@@ -1,5 +1,7 @@
 package basic.collection;
 
+import java.util.HashMap;
+
 public class MyHashMap<K,V>  {
     private class Entry<K,V>{
         int hash;

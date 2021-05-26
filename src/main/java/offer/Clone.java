@@ -12,15 +12,14 @@ public class Clone {
         if (pHead == null){
             return null;
         }
-        RandomListNode temp = new RandomListNode(pHead.label);
-        RandomListNode head = temp;
-        while (pHead.next != null){
-            temp.next = new RandomListNode(pHead.next.label);
+        RandomListNode pre = new RandomListNode(pHead.label),head = pre;
+        while (pre.next != null){
+            pre.next = new RandomListNode(pHead.next.label);
             if (pHead.random != null) {
-                temp.random = new RandomListNode(pHead.random.label);
+                pre.random = new RandomListNode(head.random.label);
             }
-            temp = temp.next;
-            pHead = pHead.next;
+            pre = pre.next;
+            head = head.next;
         }
         return head;
     }

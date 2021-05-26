@@ -1,26 +1,23 @@
 package offer;
 
+import java.util.Arrays;
+
 public class reOrderArray {
     public static void main(String[] args) {
-        int [] nums = {2,3,1,5,4,6,7,8,10};
+        int[] nums = {2, 3, 1, 5, 4, 6, 7, 8, 10};
         reOrderArray(nums);
+        Arrays.stream(nums).asLongStream().forEach(t -> System.out.println(t+"  "));
     }
-    public static void reOrderArray(int [] array) {
-       int left = 0,right = array.length -1;
-       while (left < right){
-           while ( array[left] % 2 == 1 && left < right){
-               left++;
-           }
-           while (array[right] % 2 == 0 && left < right){
-               right--;
-           }
-           int temp = array[left];
-           array[left] = array[right];
-           array[right] = temp;
-       }
-        for (int n :
-                array) {
-            System.out.println(n);
+
+    public static void reOrderArray(int[] array) {
+        for (int i = 0; i < array.length; i++){
+            for (int j = array.length - 1; j > i; j--){
+                if ((array[j] & 1) == 0 && (array[j-1] & 1) == 1) {
+                    int temp = array[j];
+                    array[j] = array[j - 1];
+                    array[j - 1] = temp;
+                }
+            }
         }
     }
 }
