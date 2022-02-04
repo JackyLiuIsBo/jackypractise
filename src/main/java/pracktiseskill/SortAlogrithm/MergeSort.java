@@ -1,5 +1,7 @@
 package pracktiseskill.SortAlogrithm;
 
+import java.util.Arrays;
+
 public class MergeSort {
 
     private static Integer count = 0;
@@ -7,11 +9,8 @@ public class MergeSort {
          int[] array = {1,2,3,4,5,6,7,0};
          Sorts(array);
 
-        for (int i:array
-             ) {
-            System.out.println(i);
-        }
-        System.out.println("count :"+count);
+        System.out.println(Arrays.toString(array));
+      //  System.out.println("count :"+count);
     }
 
 

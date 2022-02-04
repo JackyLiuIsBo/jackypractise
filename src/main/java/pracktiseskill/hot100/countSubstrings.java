@@ -22,18 +22,24 @@ package pracktiseskill.hot100;
  * 输入："aaa"
  * 输出：6
  * 解释：6个回文子串: "a", "a", "a", "aa", "aa", "aaa"
- *
  **/
 public class countSubstrings {
+    public static void main(String[] args) {
+        String str = "abaaa";
+        int i = countSubstrings(str);
+        System.out.println(i);
+
+    }
+
     //求回文子串是用中心扩展算法，
-    public int countSubstrings(String s) {
+    public static int countSubstrings(String s) {
         int sum = 0;
         int length = s.length();
         //这里i的范围需要扩展一倍
-        for(int i = 0; i < 2 * length -1; i++){
-            int left = i /2 ;
+        for (int i = 0; i < 2 * length - 1; i++) {
+            int left = i / 2;
             int right = i / 2 + i % 2;
-            while(left >= 0 && right < length && s.charAt(left) == s.charAt(right)){
+            while (left >= 0 && right < length && s.charAt(left) == s.charAt(right)) {
                 left--;
                 right++;
                 sum++;

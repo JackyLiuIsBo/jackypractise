@@ -1,27 +1,41 @@
 package leetcode.dynamicprograming;
 
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.Random;
+
 public class longestPalindrome {
     public static void main(String[] args) {
-        String s = "babad";
+        String s = "cbbd";
         String s1 = longestPalindrome(s);
         System.out.println(s1);
     }
-     static int start=0,count=0;
-    public static String longestPalindrome(String s) {
-            for (int i = 0; i < s.length(); i++){
-                getPanlidrome(s,i,i);
-                getPanlidrome(s,i,i+1);
+   private static String longestPalindrome(String str){
+        int start = 0, end = 0;
+        for (int i = 0; i < str.length(); i++){
+            int l1 = getLength(str, i, i);
+            int l2 = getLength(str, i, i + 1);
+            int len = Math.max(l1,l2);
+            if (len > end - start){
+                end = i + len / 2;
+                start = i - (len - 1) / 2;
             }
-            return s.substring(start,start+count);
-    }
-    public static void getPanlidrome(String s ,int left, int right){
-        while (left > 0. && right < s.length() && s.charAt(left) == s.charAt(right)){
+        }
+        StringBuilder sb = new StringBuilder();
+        int[] num = new int[2];
+
+       Random random = new Random();
+       int i = random.nextInt();
+       return str.substring(start,end+1);
+
+   }
+
+   private static int getLength(String str,int left,int right){
+        while (left >= 0 && right < str.length() && str.charAt(left) == str.charAt(right)){
             left--;
             right++;
         }
-        if (right - left - 1 > count){
-            start = left+1;
-            count = right - left - 1;
-        }
-    }
+
+        return right - left - 1;
+   }
 }

@@ -33,25 +33,40 @@ import java.util.Queue;
  * 解释：总共有 2 门课程。学习课程 1 之前，你需要先完成​课程 0 ；并且学习课程 0 之前，你还应先完成课程 1 。这是不可能的。
  **/
 public class canFinish {
+    public static void main(String[] args) {
+        int[][] prerequisites = {{1, 0}, {0, 1}};
+        canFinish(2, prerequisites);
+    }
 
     //先构建拓扑图，然后从入度为零的节点依次开始遍历
-    public boolean canFinish(int numCourses, int[][] prerequisites) {
+    public static boolean canFinish(int numCourses, int[][] prerequisites) {
         int[] indegrees = new int[numCourses];
         List<List<Integer>> adjacency = new ArrayList<>();
         Queue<Integer> queue = new LinkedList<>();
-        for (int i = 0; i < numCourses; i++) { adjacency.add(new ArrayList<>()); }
+        for (int i = 0; i < numCourses; i++) {
+
+            adjacency.add(new ArrayList<>());
+        }
         // Get the indegree and adjacency of every course.
         for (int[] cp : prerequisites) {
             indegrees[cp[0]]++;
             adjacency.get(cp[1]).add(cp[0]);
         }
         // Get all the courses with the indegree of 0.
-        for (int i = 0; i < numCourses; i++) { if (indegrees[i] == 0) { queue.add(i); } }
+        for (int i = 0; i < numCourses; i++) {
+            if (indegrees[i] == 0) {
+                queue.add(i);
+            }
+        }
         // BFS TopSort.
         while (!queue.isEmpty()) {
             int pre = queue.poll();
             numCourses--;
-            for (int cur : adjacency.get(pre)) { if (--indegrees[cur] == 0) { queue.add(cur); } }
+            for (int cur : adjacency.get(pre)) {
+                if (--indegrees[cur] == 0) {
+                    queue.add(cur);
+                }
+            }
         }
         return numCourses == 0;
     }
@@ -60,41 +75,33 @@ public class canFinish {
         List<List<Integer>> adjecent = new ArrayList<>();
         Deque<Integer> queue = new LinkedList<>();
         int[] degree = new int[numCourses];
-        for(int i = 0; i < numCourses; i++){
+        for (int i = 0; i < numCourses; i++) {
             adjecent.add(new ArrayList<>());
         }
         //计算出每个节点的入度
-        for (int [] temp : prerequisites){
+        for (int[] temp : prerequisites) {
             adjecent.get(temp[1]).add(temp[0]);
             degree[temp[0]]++;
         }
         //添加入度为0的节点进入队列
-        for (int i = 0; i < numCourses; i++){
+        for (int i = 0; i < numCourses; i++) {
             if (degree[i] == 0) {
                 queue.add(i);
             }
         }
 
-
-        while (!queue.isEmpty()){
+        while (!queue.isEmpty()) {
             Integer poll = queue.poll();
             numCourses--;
             //其他节点入度减少为0后，需要添加到队列
-            for (int temp : adjecent.get(poll)){
-                if (--degree[temp] == 0){
+            for (int temp : adjecent.get(poll)) {
+                if (--degree[temp] == 0) {
                     queue.add(temp);
                 }
             }
         }
 
         return numCourses == 0;
-
-
-
-
-
-
-
 
     }
 

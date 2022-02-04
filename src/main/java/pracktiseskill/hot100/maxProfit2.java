@@ -49,6 +49,8 @@ public class maxProfit2 {
             hold = temphold;
             cold = tempcold;
         }
+        String temp = "aa";
+        String s = new String(temp);
         return Math.max(sale,cold);
     }
 }

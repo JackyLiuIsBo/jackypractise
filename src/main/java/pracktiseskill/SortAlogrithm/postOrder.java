@@ -1,12 +1,27 @@
 package pracktiseskill.SortAlogrithm;
 
+import com.google.common.collect.Lists;
 import offer.TreeNode;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.Stack;
+
+import javax.persistence.criteria.CriteriaBuilder.In;
 
 public class postOrder {
     public static void main(String[] args) {
+        LinkedList<Integer> list = Lists.newLinkedList();
+        list.add(0);
+        list.push(9);
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        arrayList.add(23);
 
+        Stack<Integer> stack = new Stack<>();
+        stack.push(32);
+        stack.pop();
+        arrayList.remove(arrayList.size()-1);
     }
 
     public void postOrder(TreeNode root){

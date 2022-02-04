@@ -13,13 +13,14 @@ public class LRUCache2<K,V> {
     }
 
     public synchronized void put(K key, V val) {
-        if (!map.containsKey(key)) {
-            if (map.size() >= cacheSize) {
+        if (!(map.containsKey(key))) {
+            if (cacheList.size() >= cacheSize) {
                 removeLastElement();
             }
             cacheList.addFirst(key);
             map.put(key, val);
         } else {
+            map.put(key,val);
             moveToFirst(key);
         }
     }
@@ -44,19 +45,26 @@ public class LRUCache2<K,V> {
 
     @Override
     public String toString() {
-        return cacheList.toString();
+        StringBuilder sb = new StringBuilder();
+        return map.toString();
+
     }
 
     public static void main(String[] args) {
-        LRUCache2<String,Integer> lru = new LRUCache2<>(4);
-        lru.put("C", 1);
-        lru.put("A", 2);
-        lru.put("D", 3);
-        lru.put("E",4);
+        LRUCache2<Integer,Integer> lru = new LRUCache2<>(2);
+
+        lru.put(2, 6);
+        lru.get(1);
+        lru.put(1,5);
+        lru.put(1,2);
+        lru.get(2);
+        System.out.println(lru.toString());
+        Integer integer = lru.get(2);
+        System.out.println(integer);
         System.out.println(lru);
-        Integer c = lru.get("C");
-        lru.put("B", null);
-        lru.put("E", null);
+        lru.put(1,1);
+        lru.put(4, 1);
+        lru.get(2);
 
 
         System.out.println(lru);

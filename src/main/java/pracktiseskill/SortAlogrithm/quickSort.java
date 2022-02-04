@@ -1,5 +1,6 @@
 package pracktiseskill.SortAlogrithm;
 
+import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.reducing;
 
 public class quickSort {
@@ -15,26 +16,31 @@ public class quickSort {
         }
     }
 
-    private static void quickSort(int[] array,int left,int right){
-        int pos = merge(array,left,right);
+    private static void  quickSort(int[] array,int left,int right){
+        if (left < right){
+            int pos = partion(array,left,right);
+            quickSort(array,left,pos);
+            quickSort(array,pos+1,right);
+        }
     }
 
-    private static int merge(int[] array, int left, int right) {
+    private static int  partion(int[] array,int left,int right){
         int temp = array[left];
-
         while (left < right){
-            while (array[left] < temp  && left < right){
-                left++;
-            }
-            while (array[right] > temp && left < right){
+            while (left < right &&  temp < array[right]){
                 right--;
             }
+            array[left] = array[right];
+            while (left < right && array[left] <= temp){
+                left++;
+            }
+            array[right] = array[left];
         }
-        return 0;
+
+        array[left] = temp;
+        return left;
     }
 
-    //
-   //
    //private static void quickSort(int[] array,int left,int right){
    //     if (left < right){
    //        int pos = partion(array,left,right);

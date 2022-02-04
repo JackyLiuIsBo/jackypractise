@@ -1,6 +1,12 @@
 package pracktiseskill.SortAlogrithm;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
+
+import com.google.common.collect.Lists;
 
 /**
  * @ClassName distribute
@@ -44,10 +50,44 @@ public class distribute {
     }
 
     public static void main(String[] args) {
-        boolean powerOfThree = isPowerOfThree(45);
-        System.out.println(powerOfThree);
+        int[] nums = {1,2,5};
+        int[] result = new int[1];
+
+        coinChange(nums,11);
+    }
+    static int coinChange1(int[] coins, int amount) {
+        int max = amount + 1;
+        int[] dp = new int[amount + 1];
+        Arrays.fill(dp, max);
+        dp[0] = 0;
+        for (int i = 1; i <= amount; i++) {
+            for(int coin : coins){
+
+                if (coin <= i) {
+                    dp[i] = Math.min(dp[i], dp[i - coin] + 1);
+                }
+            }
+        }
+        return dp[amount] > amount ? -1 : dp[amount];
+
     }
 
+    public static int coinChange(int[] coins, int amount) {
+        int[] dp = new int[amount+1];
+        Arrays.fill(dp,amount+1);
+        dp[0] = 0;
+
+        for(int coin : coins){
+            for(int i = 1; i <= amount; i++){
+                if(i >= coin){
+                   int temp = Math.min(dp[i],dp[i - coin] + 1);
+                    dp[i] = temp;
+                }
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        return dp[amount];
+    }
     public static boolean isPowerOfThree(int n) {
         if(n < 1){
             return false;
@@ -62,4 +102,7 @@ public class distribute {
 
         return isPowerOfThree(n/3);
     }
+
+
+
 }

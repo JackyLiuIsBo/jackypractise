@@ -37,21 +37,21 @@ public class findKthLargest215 {
      */
     public static void main(String[] args) {
         int[] array = {4, 2, 7, 5, 6, 9, 1,0,-1};
-        LinkedList<Integer> linkedList  = new LinkedList<>();
-        linkedList.add(2);
-        linkedList.add(4);
-        Deque<Integer> list  = new LinkedList<>();
-        list.add(2);
+        //LinkedList<Integer> linkedList  = new LinkedList<>();
+        //linkedList.add(2);
+        //linkedList.add(4);
+        //Deque<Integer> list  = new LinkedList<>();
+        //list.add(2);
+        //
+        //list.offer(2);
+        //Stack<Integer> stack = new Stack<>();
+        //stack.add(2);
+        //stack.push(2);
+        //stack.pop();
+        //System.out.println(Arrays.toString(linkedList.toArray()));
 
-        list.offer(2);
-        Stack<Integer> stack = new Stack<>();
-        stack.add(2);
-        stack.push(2);
-        stack.pop();
-        System.out.println(Arrays.toString(linkedList.toArray()));
 
-
-        topK(array,3);
+        topK(array,4);
     }
     //public static int findKthLargest1(int[] a, int k) {
     //    //n的取值需要减 1
@@ -63,8 +63,7 @@ public class findKthLargest215 {
 
     private static int topK(int [] array,int k){
         int select = select(array, 0, array.length-1, k);
-
-        System.out.println("position:" + select);
+        System.out.println("position:" + (select));
         System.out.println("number is :" + array[select]);
 
         return array[select];
@@ -73,10 +72,10 @@ public class findKthLargest215 {
     private static int select(int [] array,int left, int right,int k){
         int pos = partion(array,left,right);
 
-        if (pos - left + 1 > k){
+        if (pos + 1 > k){
             return select(array,left,pos,k);
-        }else if (pos - left + 1 < k){
-            return select(array,pos + 1,right,k-(pos - left + 1));
+        }else if (pos + 1  < k){
+            return select(array,pos + 1,right,k);
         }else {
             return pos;
         }
@@ -88,13 +87,13 @@ public class findKthLargest215 {
 
         while (start < end){
 
-            while (start < end && array[end] > temp){
+            while (start < end && array[end] <= temp){
                 end --;
             }
 
             array[start] = array[end];
 
-            while (start < end && array[start] <= temp){
+            while (start < end && array[start] > temp){
                 start ++;
             }
 

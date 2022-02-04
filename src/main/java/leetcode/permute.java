@@ -6,6 +6,7 @@ public class permute {
     public static void main(String[] args) {
         int[] array = {1,2,3};
         List<List<Integer>> permute = permute(array);
+
         for (List list:permute){
             Iterator iterator = list.iterator();
             while (iterator.hasNext()){

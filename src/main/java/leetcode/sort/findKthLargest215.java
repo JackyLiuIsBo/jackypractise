@@ -5,9 +5,8 @@ import java.util.Arrays;
 public class findKthLargest215 {
 
     public static void main(String[] args) {
-        int[] array = {4, 2, 7, 5, 6, 9, 1,0,-1};
-        int kthLargest1 = findKthLargest1(array, 1);
-        quickSort(array,0,array.length-1);
+        int[] array = {3,2,1,5,6,4};
+        int kthLargest1 = findKthLargest1(array, 2);
         System.out.println(kthLargest1 );
         System.out.println(Arrays.toString(array));
     }
@@ -16,47 +15,35 @@ public class findKthLargest215 {
         int p = quickSelect(a, 0,n - 1, k);
         return a[p];
     }
-    private static void quickSort(int[] array,int left,int right){
-        if (left >= right){
-            return;
-        }
-        int partion = partion(array, left, right);
-        quickSort(array,left,partion);
-        quickSort(array,partion+1,right);
-    }
+
 
 
     private static int quickSelect(int[] array,int left, int right, int k){
         int partion = partion(array, left, right);
 
-        if (partion + 1> k){
-           return quickSelect(array,left,partion,k);
+        if (partion + 1 > k){
+           return quickSelect(array,left,partion - 1,k);
         }else if (partion + 1 < k){
           return   quickSelect(array,partion+1,right,k);
         }
         return partion;
     }
 
-    private static int partion(int[] array,int left,int right){
-        if (left >= right ){
-            return 0;
-        }
-        int temp = array[left];
-        int start = left,end = right;
-        while (start < end){
-            while (start < end && array[end] > temp){
-                end--;
+    private static int partion(int[] nums,int left,int right){
+        int temp = nums[right];
+        while(left < right){
+            while(left < right && nums[left] > temp){
+                left++;
             }
-            array[start] = array[end];
-            while (start < end && array[start] <= temp){
-                start++;
+            nums[right] = nums[left];
+            while(left < right && nums[right] <= temp){
+                right--;
             }
-            array[end] = array[start];
+            nums[left] = nums[right];
         }
+        nums[left] = temp;
 
-        array[start] = temp;
-
-        return start;
+        return left;
 
     }
     //

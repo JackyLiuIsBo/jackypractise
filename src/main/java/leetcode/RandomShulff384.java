@@ -1,5 +1,6 @@
 package leetcode;
 
+import java.util.HashMap;
 import java.util.Random;
 
 /**
@@ -21,47 +22,94 @@ import java.util.Random;
  * solution.shuffle();
  */
 public class RandomShulff384 {
-    private int[] array;
-    private int[] original;
-
     public static void main(String[] args) {
-        int [] nums = {1,2,3};
+        int[] nums = {1, 2, 3};
+
         RandomShulff384 test = new RandomShulff384(nums);
 
         int[] shuffle = test.shuffle();
-        for (int n:shuffle
-             ) {
+        for (int n : shuffle
+        ) {
             System.out.println(n);
         }
     }
-    Random rand = new Random();
+        int[] copy;
+        int[] arrays;
+        Random random;
 
-    private int randRange(int min, int max) {
-        return rand.nextInt(max - min) + min;
-    }
-
-    private void swapAt(int i, int j) {
-        int temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
-    }
-
-    public  RandomShulff384(int[] nums) {
-        array = nums;
-        original = nums.clone();
-    }
-
-    public int[] reset() {
-        array = original;
-        original = original.clone();
-        return original;
-    }
-
-    public int[] shuffle() {
-        for (int i = 0; i < array.length; i++) {
-            swapAt(i, randRange(i, array.length));
+    public RandomShulff384( int[] nums){
+            copy = nums.clone();
+            this.arrays = nums;
+            random = new Random();
         }
-        return array;
-    }
 
-}
+        /** Resets the array to its original configuration and return it. */
+        public int[] reset () {
+            copy = arrays.clone();
+            return arrays;
+        }
+
+        /** Returns a random shuffling of the array. */
+        public int[] shuffle () {
+            for (int i = 0; i < arrays.length; i++) {
+                int n = randRange(i + 1, copy.length);
+                swap(copy, i, n);
+            }
+            HashMap<String,String> map = new HashMap(){{put("+","+");}};
+            return copy;
+        }
+
+        private int randRange ( int min, int max){
+            return random.nextInt(max - min) + min;
+        }
+
+        public void swap ( int[] array, int left, int right){
+            int temp = array[left];
+            array[left] = array[right];
+            array[right] = temp;
+        }
+
+        //    private int[] array;
+        //    private int[] original;
+        //
+        //    public static void main(String[] args) {
+        //        int [] nums = {1,2,3};
+        //        RandomShulff384 test = new RandomShulff384(nums);
+        //
+        //        int[] shuffle = test.shuffle();
+        //        for (int n:shuffle
+        //             ) {
+        //            System.out.println(n);
+        //        }
+        //    }
+        //    Random rand = new Random();
+        //
+        //    private int randRange(int min, int max) {
+        //        return rand.nextInt(max - min) + min;
+        //    }
+        //
+        //    private void swapAt(int i, int j) {
+        //        int temp = array[i];
+        //        array[i] = array[j];
+        //        array[j] = temp;
+        //    }
+        //
+        //    public  RandomShulff384(int[] nums) {
+        //        array = nums;
+        //        original = nums.clone();
+        //    }
+        //
+        //    public int[] reset() {
+        //        array = original;
+        //        original = original.clone();
+        //        return original;
+        //    }
+        //
+        //    public int[] shuffle() {
+        //        for (int i = 0; i < array.length; i++) {
+        //            swapAt(i, randRange(i, array.length));
+        //        }
+        //        return array;
+        //    }
+
+    }

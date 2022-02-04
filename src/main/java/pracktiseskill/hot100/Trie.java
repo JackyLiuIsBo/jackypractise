@@ -7,46 +7,52 @@ package pracktiseskill.hot100;
  * @Date 2021/5/22 6:53 下午
  **/
 public class Trie {
-    Trie[] chirld ;
-    Boolean isEnd ;
+    /** Initialize your data structure here. */
+    private Trie[] children;
+    private boolean isEnd;
 
-    Trie (){
-        chirld = new Trie[26];
-        isEnd = true;
+    public static void main(String[] args) {
+        Trie trie = new Trie();
+        trie.insert("apple");
+    }
+    public Trie() {
+        children = new Trie[26];
+        isEnd = false;
     }
 
-    public void insert(String str){
+    public void insert(String word) {
         Trie node = this;
-        for (int i = 0; i < str.length(); i++){
-            int index = str.charAt(i) - 'a';
-            this.chirld[index] = node;
-            node = node.chirld[index];
-
+        for (int i = 0; i < word.length(); i++) {
+            char ch = word.charAt(i);
+            int index = ch - 'a';
+            if (node.children[index] == null) {
+                node.children[index] = new Trie();
+            }
+            node = node.children[index];
         }
-
         node.isEnd = true;
-
     }
 
     public boolean search(String word) {
-        Trie node =  searchPre(word);
+        Trie node = searchPrefix(word);
         return node != null && node.isEnd;
     }
 
-    private Trie searchPre(String word) {
-        Trie node = this;
-        for(int i =0; i < word.length();i++){
-            int index = word.charAt(i);
-            if (node.chirld[i] == null){
-                return null;
-            }
-            node = node.chirld[index];
-        }
-        return node;
+    public boolean startsWith(String prefix) {
+        return searchPrefix(prefix) != null;
     }
 
-    public boolean startsWith(String prefix) {
-        return searchPre(prefix) != null;
+    private Trie searchPrefix(String prefix) {
+        Trie node = this;
+        for (int i = 0; i < prefix.length(); i++) {
+            char ch = prefix.charAt(i);
+            int index = ch - 'a';
+            if (node.children[index] == null) {
+                return null;
+            }
+            node = node.children[index];
+        }
+        return node;
     }
 
 }

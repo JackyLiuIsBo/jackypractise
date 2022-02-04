@@ -8,9 +8,10 @@ import designs.pattern.structural.proxy.db.DataSourceContextHolder;
 /**
  * Created by geely
  */
-public class OrderServiceStaticProxy {
+public class OrderServiceStaticProxy implements IOrderService{
     private IOrderService iOrderService;
 
+    @Override
     public int saveOrder(Order order){
         beforeMethod(order);
         iOrderService = new OrderServiceImpl();

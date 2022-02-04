@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+import com.alibaba.fastjson.JSONObject;
+
 /**
  * @ClassName listLRU
  * @Description
@@ -74,18 +76,24 @@ public class listLRU<K,V> {
     }
 
     public static void main(String[] args) {
-        listLRU<Integer,Integer> lru = new listLRU<>(4);
-        lru.put(1, 1);
-        lru.put(2, 2);
-        lru.get(1);
-        lru.put(3, 3);
-        System.out.println(lru);
-        Integer c = lru.get(2);
-        lru.put(4,4);
-        System.out.println(lru);
+        //listLRU<Integer,Integer> lru = new listLRU<>(4);
+        //lru.put(1, 1);
+        //lru.put(2, 2);
+        //lru.get(1);
+        //lru.put(3, 3);
+        //System.out.println(lru);
+        //Integer c = lru.get(2);
+        //lru.put(4,4);
+        //System.out.println(lru);
+        String js = "{\"image_type\": \"food_image\", \"oss_logo_image_url\":\"https://fuss-resource.cn-shanghai.oss"
+            + ".aliyuncs.com/a/ad/df584f683e83cbcb226cdbff1a30djpeg.jpeg\", "
+            + "\"logo_image_url\":\"/imgextra/i4/2201150353908/O1CN01WjTqto1ejuPhP1PGo_!!2201150353908-0-koubei"
+            + ".jpg\", \"food_id\": \"254941434931\"}\n";
+        JSONObject jsonObject = JSONObject.parseObject(js);
+        String image_type = jsonObject.getString("image_type");
+        System.out.println(image_type);
+        System.out.println("ss");
 
-
-
-        System.out.println(lru);
+        //    System.out.println(lru);
     }
 }

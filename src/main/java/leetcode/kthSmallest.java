@@ -28,6 +28,8 @@ public class kthSmallest {
 
                     return root.val;
                 }
+
+                //这里不需要对root.right进行判空
                 root = root.right;
             }
         }

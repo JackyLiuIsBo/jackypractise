@@ -1,6 +1,10 @@
 package pracktiseskill.hot100;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Stack;
+
+import javax.persistence.criteria.CriteriaBuilder.In;
 
 import leetcode.TreeNode;
 
@@ -42,20 +46,24 @@ public class pathSum {
         map.put(0,1);
         return dfs(root,targetSum,map,0);
     }
-
-    private int dfs(TreeNode root, int targetSum, HashMap<Integer, Integer> map, int last) {
+    public int dfs(TreeNode root,int targetSum,HashMap<Integer, Integer> map,int curNum){
         if(root == null){
             return 0;
         }
-        int result = 0;
-        last += root.val;
-        result += map.getOrDefault(last-targetSum,0);
 
-        map.put(last,map.getOrDefault(last,0) + 1);
-        int left = dfs(root.left,targetSum,map,last);
-        int right = dfs(root.right,targetSum,map,last);
-        result = result + left + right;
-        map.put(last,map.get(last) - 1);
-        return result;
+
+        int res = 0;
+        curNum += root.val;
+
+        res += map.getOrDefault(curNum-targetSum,0);
+
+        map.put(curNum-targetSum,map.getOrDefault(curNum-targetSum,0) + 1);
+        res += dfs(root.left,targetSum,map,curNum);
+        res += dfs(root.right,targetSum,map,curNum);
+
+        map.put(curNum-targetSum,map.getOrDefault(curNum-targetSum,0) - 1);
+
+        return res;
+
     }
 }
