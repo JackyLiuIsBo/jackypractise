@@ -3,8 +3,6 @@ package offer;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-import sun.awt.image.ImageWatched.Link;
-
 /**
  * @ClassName PrintFromTopToButton
  * @Description

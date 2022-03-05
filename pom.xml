@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.jacky</groupId>
-    <artifactId>jacky.practise</artifactId>
+    <artifactId>jacky.practises</artifactId>
     <version>1.0-SNAPSHOT</version>
     <build>
         <plugins>
@@ -13,14 +13,13 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>8</source>
-                    <target>8</target>
+                    <source>11</source>
+                    <target>11</target>
                 </configuration>
             </plugin>
         </plugins>
     </build>
 
-    <!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
     <dependencies>
         <dependency>
             <groupId>org.reflections</groupId>
@@ -37,26 +36,26 @@
             <artifactId>spring-context</artifactId>
             <version>4.3.8.RELEASE</version>
         </dependency>
-    <dependency>
-        <groupId>org.jsoup</groupId>
-        <artifactId>jsoup</artifactId>
-        <version>1.11.3</version>
-    </dependency>
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.11.3</version>
+        </dependency>
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
             <version>4.1.6.Final</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>com.aliyun</groupId>-->
-<!--            <artifactId>aliyun-security-client-common</artifactId>-->
-<!--            <version>1.2.0</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>com.aliyun</groupId>-->
-<!--            <artifactId>aliyun-security-client-opensearch</artifactId>-->
-<!--            <version>3.5.1</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.aliyun</groupId>-->
+        <!--            <artifactId>aliyun-security-client-common</artifactId>-->
+        <!--            <version>1.2.0</version>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.aliyun</groupId>-->
+        <!--            <artifactId>aliyun-security-client-opensearch</artifactId>-->
+        <!--            <version>3.5.1</version>-->
+        <!--        </dependency>-->
         <dependency>
             <groupId>com.aliyun</groupId>
             <artifactId>aliyun-java-sdk-core</artifactId>
