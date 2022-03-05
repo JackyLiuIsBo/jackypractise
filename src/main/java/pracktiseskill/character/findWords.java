@@ -1,4 +1,4 @@
-package pracktiseskill;
+package pracktiseskill.character;
 
 import java.util.ArrayList;
 import java.util.Arrays;

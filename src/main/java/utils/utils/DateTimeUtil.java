@@ -29,6 +29,7 @@ import java.util.concurrent.TimeUnit;
  * @version V1.0
  **/
 public class DateTimeUtil {
+
     /**
      * 定义时间日期显示格式
      */
@@ -529,7 +530,10 @@ public class DateTimeUtil {
     public static void main(String[] args) throws ParseException {
         String TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
         SimpleDateFormat sf = new SimpleDateFormat(TIME_FORMAT);
-        System.out.println(sf.parse("2017-09-27 00:00:00").getTime());
-        System.out.println(sf.parse("2017-09-27 23:59:59").getTime());
+
+        Date date = new Date(1646103508828L);
+        String format = sf.format(date);
+        System.out.println(format);
+
     }
 }

@@ -13,33 +13,56 @@ import java.util.*;
  */
 public class MaxWindow {
     public static void main(String[] args) {
-        int [] num = {2,3,4,2,6,2,5,1};
-        ArrayList<Integer> list = maxInWindows(num, 3);
+        int [] num = {10,14,12,11};
+        ArrayList<Integer> list = maxInWindows(num, 4);
         for (Integer n :
                 list) {
             System.out.println(n);
         }
     }
     public static ArrayList<Integer> maxInWindows(int [] num, int size){
-        PriorityQueue<Integer> queue = new PriorityQueue<>((t1,t2)-> t2 - t1);
 
-        //PriorityQueue<Integer> queue = new PriorityQueue<>(
-        //    (t1,t2)-> t2 - t1);
 
-        ArrayList<Integer> list = new ArrayList<>();
-        if (num.length < size){
-            return list;
+        ArrayList<Integer> result = new ArrayList();
+
+        if(size == 0 || num == null || num.length == 0 || num.length < size){
+            return result;
         }
-        for (int i = 0; i < size; i++){
+        PriorityQueue<Integer> queue = new PriorityQueue<Integer>((o1,o2)->o2-o1);
+        //                                                         );
+        //       PriorityQueue<Integer> queue = new PriorityQueue<Integer>((o1,o2)->o2-o1);//大顶堆
+
+        for(int i = 0; i < size; i++){
             queue.offer(num[i]);
         }
-        int count = 0;
-        for (int i = size; i < num.length; i++){
-            list.add(queue.peek());
-            queue.remove(num[count++]);
+
+        for(int i = size; i < num.length; i++){
+
+            result.add(queue.peek());
+            queue.remove(num[i-size]);
             queue.offer(num[i]);
         }
-        list.add(queue.peek());
-        return list;
+        result.add(queue.peek());
+        return result;
+        //PriorityQueue<Integer> queue = new PriorityQueue<>((t1,t2)-> t2 - t1);
+        //
+        ////PriorityQueue<Integer> queue = new PriorityQueue<>(
+        ////    (t1,t2)-> t2 - t1);
+        //
+        //ArrayList<Integer> list = new ArrayList<>();
+        //if (num.length < size){
+        //    return list;
+        //}
+        //for (int i = 0; i < size; i++){
+        //    queue.offer(num[i]);
+        //}
+        //int count = 0;
+        //for (int i = size; i < num.length; i++){
+        //    list.add(queue.peek());
+        //    queue.remove(num[count++]);
+        //    queue.offer(num[i]);
+        //}
+        //list.add(queue.peek());
+        //return list;
     }
 }

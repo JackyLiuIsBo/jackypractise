@@ -6,11 +6,9 @@ public class MergeSort {
 
     private static Integer count = 0;
     public static void main(String[] args) {
-         int[] array = {1,2,3,4,5,6,7,0};
-         Sorts(array);
-
-        System.out.println(Arrays.toString(array));
-      //  System.out.println("count :"+count);
+         String operator = "239669|jacky";
+        String[] split = operator.split("\\|");
+        System.out.println(Arrays.toString(split));
     }
 
 

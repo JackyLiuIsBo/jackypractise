@@ -1,4 +1,4 @@
-package pracktiseskill;
+package pracktiseskill.shuzu;
 
 /**
  * @ClassName isValidSudu

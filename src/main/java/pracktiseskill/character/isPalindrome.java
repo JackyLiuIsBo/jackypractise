@@ -1,4 +1,4 @@
-package pracktiseskill;
+package pracktiseskill.character;
 
 /**
  * @ClassName isPalindrome

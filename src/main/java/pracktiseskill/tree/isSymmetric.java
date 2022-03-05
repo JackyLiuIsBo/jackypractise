@@ -1,4 +1,4 @@
-package pracktiseskill;
+package pracktiseskill.tree;
 
 import java.util.LinkedList;
 
