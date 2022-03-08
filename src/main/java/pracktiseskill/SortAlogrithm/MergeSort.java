@@ -6,10 +6,51 @@ public class MergeSort {
 
     private static Integer count = 0;
     public static void main(String[] args) {
-         String operator = "239669|jacky";
-        String[] split = operator.split("\\|");
-        System.out.println(Arrays.toString(split));
+        int[] array = {1, 3, 2, 4, 5, 6, 7, 0};
+        mergeSort(array,0,array.length-1,new int[array.length]);
+        System.out.println(Arrays.toString(array));
     }
+
+    static void mergeSort(int [] nums,int left, int right,int [] temp){
+        if (left >= right){
+            return;
+        }
+        int mid = (left + right) / 2;
+        mergeSort(nums,left,mid,temp);
+        mergeSort(nums,mid+1,right,temp);
+        int start = mid,end = right;
+        int t = right - left;
+        while (start >= left && end > mid){
+
+            if(nums[end] > nums[start]){
+                temp[t--] = nums[end--];
+            }else {
+                temp[t--] = nums[start--];
+            }
+        }
+
+        while (start >= left){
+            temp[t--] = nums[start--];
+        }
+
+        while (end > mid){
+            temp[t--] = nums[end--];
+        }
+        t = 0;
+        while (left <= right){
+            nums[left++] = temp[t++];
+        }
+    }
+
+
+
+
+
+
+
+
+
+
 
 
     private static void Sorts(int [] array){
