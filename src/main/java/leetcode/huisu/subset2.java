@@ -1,4 +1,4 @@
-package offer.allcharacter;
+package leetcode.huisu;
 
 import java.util.LinkedList;
 import java.util.List;

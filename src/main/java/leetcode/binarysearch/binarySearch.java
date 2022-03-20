@@ -1,4 +1,4 @@
-package offer.search;/**
+package leetcode.binarysearch;/**
  * @program: jackypractise
  * @description: 二分查找的模板
  * @author: liubo

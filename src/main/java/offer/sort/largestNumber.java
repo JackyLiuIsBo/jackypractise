@@ -1,4 +1,4 @@
-package pracktiseskill.sort;
+package offer.sort;
 
 import java.util.Arrays;
 import java.util.HashMap;
