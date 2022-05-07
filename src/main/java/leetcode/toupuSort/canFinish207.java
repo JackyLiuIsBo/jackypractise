@@ -25,6 +25,7 @@ public class canFinish207 {
                 queue.offer(i);
             }
         }
+
         int count = 0;
         while (!queue.isEmpty()) {
             Integer temp = queue.pop();

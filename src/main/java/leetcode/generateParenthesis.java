@@ -28,7 +28,8 @@ import java.util.List;
  *
  *
  */
-public class generateParenthesis {
+public class
+generateParenthesis {
     public static void main(String[] args) {
         List<String> strings = generateParenthesis1(3);
         for (String s:strings

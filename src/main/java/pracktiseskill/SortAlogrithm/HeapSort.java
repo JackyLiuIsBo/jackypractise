@@ -1,41 +1,81 @@
 package pracktiseskill.SortAlogrithm;
 
 import java.util.Arrays;
+import java.util.Stack;
 
 public class HeapSort {
     private static int count = 0;
+    public static int evalRPN(String[] tokens) {
+        Stack<Integer> stack = new Stack();
+        for(String temp : tokens){
+            if(isNumber(temp)){
+                stack.push(new Integer(temp));
+            }else{
+                int num1 = stack.pop();
+                int num2 = stack.pop();
+                switch(temp){
+                    case "+" : stack.push(num2 + num2); break;
+                    case "-" : stack.push(num1 - num2); break;
+                    case "/" : stack.push(num1 / num2); break;
+                    case "*" : stack.push(num1 * num2); break;
+                    default :
+                }
+            }
 
+        }
+        return stack.pop();
+    }
+    private static boolean isNumber(String str){
+        return !(str.equals("+") || str.equals("-") || str.equals("*") || str.equals("/"));
+    }
     public static void main(String[] args) {
-        int[] array = {1, 2, 3, 4, 5, 6, 7, 0};
-        quickSort(array,0,array.length-1);
+        String [] tokens = {"4","13","5","/","+"
+};
+        int num = evalRPN(tokens);
+        System.out.printf(num + "");
 
-        System.out.println(Arrays.toString(array));
+//        int[] array = {1, 2, 3, 4, 5, 6, 7, 0};
+//       // quickSort(array,0,array.length-1);
+//        heapSort(array);
+//        double du = 1;
+//        int num = (int) du;
+//        du = num;
+//        Stack<Integer> stack = new Stack();
+//        Integer integer = new Integer("1");
+//        stack.stream().mapToInt(Integer::valueOf);
+//
+//        System.out.println(Arrays.toString(array));
     }
 
-    private static void quickSort(int [] array,int left,int right){
-        if (left < right) {
-            int pos = partion(array, left, right);
-            quickSort(array, left, pos);
-            quickSort(array, pos + 1, right);
+    public static void heapSort(int [] nums){
+        for(int i = nums.length / 2 - 1; i >= 0; i--){
+            makeHeap(nums,i,nums.length-1);
+        }
+
+        for (int i = nums.length - 1; i >= 0; i--){
+            swap(nums,i,0);
+            makeHeap(nums,0,i-1);
         }
     }
 
-    private static int partion(int[] array,int left,int right){
+    private static void makeHeap(int[] nums,int pos,int length){
+        int child = pos,temp = nums[pos];
+        for(; pos * 2 + 1 <= length; pos = child){
+            child = pos * 2 + 1;
+            if (child < length && nums[child] < nums[child + 1]){
+                child++;
+            }
+            if (temp < nums[child]){
+                nums[pos] = nums[child];
+            }else {
 
-        int temp = array[left];
-        while (right > left){
-            while (right > left && array[right] > temp){
-                right--;
+                break;
             }
-            array[left] = array[right];
-            while (right > left && array[left] <= temp){
-                left++;
-            }
-            array[right] = array[left];
         }
-        array[left] = temp;
-        return left;
+        nums[pos] = temp;
     }
+
+
 
 
 
@@ -111,6 +151,8 @@ public class HeapSort {
             }
 
         }
+
+
 }
 
 

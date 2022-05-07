@@ -13,8 +13,91 @@ import offer.ListNode;
  * 进阶：
  *
  * 你可以在 O(n log n) 时间复杂度和常数级空间复杂度下，对链表进行排序吗？
+ * url： https://leetcode-cn.com/problems/sort-list/
  **/
 public class sortList {
+    public static void main(String[] args) {
+        int [][] arrays = {{0,0,0,0},{0,1,1,1}};
+        int [][] dig = {{0,0},{0,1}};
+        int[] nums = {3,2,1};
+        nextPermutation(nums);
+    }
+
+
+    public static void nextPermutation(int[] nums) {
+        int i = nums.length - 2;
+        while (i >= 0 && nums[i] >= nums[i + 1]) {
+            i--;
+        }
+        if (i >= 0) {
+            int j = nums.length - 1;
+            while (j >= 0 && nums[i] >= nums[j]) {
+                j--;
+            }
+            swap(nums, i, j);
+        }
+        reverse(nums, i + 1);
+
+    }
+
+
+    public static void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+
+    public static void reverse(int[] nums, int start) {
+        int left = start, right = nums.length - 1;
+        while (left < right) {
+            swap(nums, left, right);
+            left++;
+            right--;
+        }
+    }
+
+
+
+    public ListNode sortLists(ListNode head){
+        ListNode faster = head.next, slow = head;
+
+        while (faster != null){
+            if(faster.next == null){
+                break;
+            }
+            faster = faster.next.next;
+            slow = slow.next;
+        }
+
+        ListNode temp = slow.next;
+        slow.next = null;
+
+        ListNode left = sortLists(head);
+        ListNode right = sortLists(temp);
+
+        ListNode res = new ListNode(0);
+        ListNode rs = res;
+
+        while (left != null && right != null){
+            if (left.val > right.val){
+                res.next = left;
+                left = left.next;
+            }else {
+                res.next = right;
+                right = right.next;
+            }
+            res = res.next;
+        }
+        res.next = (left == null) ? right : left;
+
+        return rs.next;
+    }
+
+
+
+
+
+
 
 
 

@@ -1,4 +1,4 @@
-package offer;
+package leetcode.dynamicprograming;
 /**
  * 5 8
  * 3 5 1 2 2

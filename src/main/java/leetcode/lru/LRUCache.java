@@ -1,27 +1,22 @@
-package basic.lru;
+package leetcode.lru;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @ClassName lruList
+ * @ClassName simpleLru
  * @Description
  * @Author liubo
- * @Date 2021/6/16 9:29 下午
+ * @Date 2021/5/20 10:50 下午
  **/
-public class lruList {
+public class LRUCache {
     class DLinkedNode {
         int key;
         int value;
         DLinkedNode prev;
         DLinkedNode next;
-
         public DLinkedNode() {}
-
-        public DLinkedNode(int _key, int _value) {
-            key = _key;
-            value = _value;
-        }
+        public DLinkedNode(int _key, int _value) {key = _key; value = _value;}
     }
 
     private Map<Integer, DLinkedNode> cache = new HashMap<Integer, DLinkedNode>();
@@ -29,7 +24,7 @@ public class lruList {
     private int capacity;
     private DLinkedNode head, tail;
 
-    public lruList(int capacity) {
+    public LRUCache(int capacity) {
         this.size = 0;
         this.capacity = capacity;
         // 使用伪头部和伪尾部节点
@@ -66,7 +61,8 @@ public class lruList {
                 cache.remove(tail.key);
                 --size;
             }
-        } else {
+        }
+        else {
             // 如果 key 存在，先通过哈希表定位，再修改 value，并移到头部
             node.value = value;
             moveToHead(node);
@@ -94,5 +90,23 @@ public class lruList {
         DLinkedNode res = tail.prev;
         removeNode(res);
         return res;
+    }
+    public static void main(String[] args) {
+        LRUCache lru = new LRUCache(2);
+        lru.put(1, 1);
+        lru.put(2, 2);
+        lru.get(1);
+        lru.put(3, 3);
+        System.out.println(lru);
+        Integer c = lru.get(2);
+        lru.put(4,4);
+        lru.get(1);
+        lru.get(3);
+        lru.get(4);
+        System.out.println(lru);
+
+
+
+        System.out.println(lru);
     }
 }

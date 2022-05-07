@@ -1,12 +1,32 @@
 package leetcode.sort;
 
 import java.util.Arrays;
+import java.util.PriorityQueue;
 
 public class findKthLargest215 {
+    public static int findKthLargest(int[] nums, int k) {
+        int length = nums.length;
+        if(k > length){
+            return 0;
+        }
+        PriorityQueue<Integer> queue = new PriorityQueue<>(k,(o1,o2)-> o2 - o1);
 
+        for(int temp : nums){
+            queue.add(temp);
+        }
+
+        while(k >= 0){
+            queue.poll();
+            k--;
+        }
+
+
+        return queue.peek();
+    }
     public static void main(String[] args) {
+
         int[] array = {3,2,1,5,6,4};
-        int kthLargest1 = findKthLargest1(array, 2);
+        int kthLargest1 = findKthLargest(array, 2);
         System.out.println(kthLargest1 );
         System.out.println(Arrays.toString(array));
     }

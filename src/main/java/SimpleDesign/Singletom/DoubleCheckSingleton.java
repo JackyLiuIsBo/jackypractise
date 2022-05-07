@@ -1,19 +1,19 @@
 package SimpleDesign.Singletom;
 
 public class DoubleCheckSingleton {
-    private DoubleCheckSingleton(){
-    }
+  private DoubleCheckSingleton(){
 
-    private static volatile DoubleCheckSingleton instance;
+  }
+  private static DoubleCheckSingleton doubleCheckSingleton ;
 
-    public DoubleCheckSingleton getInstance(){
-        if (instance == null){
-            synchronized (DoubleCheckSingleton.class){
-                if (instance == null){
-                    instance = new DoubleCheckSingleton();
-                }
-            }
-        }
-        return instance;
-    }
+  public DoubleCheckSingleton getInstance(){
+      if(doubleCheckSingleton == null){
+          synchronized (DoubleCheckSingleton.class){
+              if(doubleCheckSingleton == null){
+                  doubleCheckSingleton = new DoubleCheckSingleton();
+              }
+          }
+      }
+      return  doubleCheckSingleton;
+  }
 }

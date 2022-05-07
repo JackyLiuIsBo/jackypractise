@@ -1,7 +1,6 @@
-package basic.lru;
+package leetcode.lru;
 
 import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.Map.Entry;
 
 public class LRU <K,V>{

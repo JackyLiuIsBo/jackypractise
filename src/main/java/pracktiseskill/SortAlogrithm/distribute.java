@@ -50,7 +50,6 @@ public class distribute {
 
     public static void main(String[] args) {
         int[] nums = {1,2,5};
-        int[] result = new int[1];
 
         coinChange(nums,11);
     }

@@ -1,15 +1,53 @@
 package offer;
 
 
-
+import java.util.Arrays;
 
 public class InversePairs {
     public static int pairsnum = 0;
 
     public static void main(String[] args) {
-        int[] nums = {1,2,3,4,5,6,7,0};
-        int i = InversePairs(nums);
+        int[][] nums = {{2,3},{2,2},{3,3},{1,3},{5,7},{2,2},{4,6}};
+        int[][] merges = merges(nums);
     }
+
+    public static int[][] merges(int[][] intervals) {
+        if(intervals.length == 0){
+            return intervals;
+        }
+        Arrays.sort(intervals,(o1,o2) ->  o1[0] - o2[0]);
+        int count = -1;
+        int[][] result = new int[intervals.length][2];
+        for(int [] interval : intervals){
+            if(count == -1 || interval[0] > result[count][1]){
+                result[++count] = interval;
+            }else{
+                result[count][1] = Math.max(interval[1],intervals[count][1]);
+            }
+
+        }
+        return Arrays.copyOf(result,count+1);
+    }
+
+    public static int[][] merge(int[][] intervals) {
+        if(intervals.length == 0){
+            return intervals;
+        }
+        Arrays.sort(intervals,(o1, o2) ->  o1[0] - o2[0]);
+        int count = -1;
+        int[][] result = new int[intervals.length][2];
+        for(int [] interval : intervals){
+            if(count == -1 || interval[0] > intervals[count][1]){
+                result[++count] = interval;
+            }else{
+                result[count][1] = Math.max(interval[1],intervals[count][1]);
+            }
+
+        }
+        return Arrays.copyOf(result,count+1);
+    }
+
+
     public static int InversePairs(int [] array) {
             int [] temp = new int[array.length];
         int n = mergeSort(array, temp, 0, array.length - 1);

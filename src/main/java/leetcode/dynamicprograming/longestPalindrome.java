@@ -1,7 +1,11 @@
 package leetcode.dynamicprograming;
+/**
+ * 回文最标准的写法
+ */
 
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 
 public class longestPalindrome {
@@ -12,6 +16,7 @@ public class longestPalindrome {
     }
    private static String longestPalindrome(String str){
         int start = 0, end = 0;
+        StringBuilder sb;
         for (int i = 0; i < str.length(); i++){
             int l1 = getLength(str, i, i);
             int l2 = getLength(str, i, i + 1);
@@ -21,11 +26,7 @@ public class longestPalindrome {
                 start = i - (len - 1) / 2;
             }
         }
-        StringBuilder sb = new StringBuilder();
-        int[] num = new int[2];
 
-       Random random = new Random();
-       int i = random.nextInt();
        return str.substring(start,end+1);
 
    }

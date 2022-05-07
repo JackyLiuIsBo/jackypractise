@@ -11,6 +11,17 @@ public class MergeSort {
         System.out.println(Arrays.toString(split));
     }
 
+    private void sameMethod(){
+        return;
+    }
+
+    private int sameMethod(int method,Long du){
+        return 1;
+    }
+
+    private int sameMethod(Long du, int method){
+        return 1;
+    }
 
     private static void Sorts(int [] array){
 
@@ -25,10 +36,9 @@ public class MergeSort {
             int mid = (right + left) / 2, t = right - left;
             merge(array,temp,left,mid);
             merge(array,temp,mid+1, right);
-
             //此处是从右到左进行判断
             int start = mid, end = right;
-            while (start >= left &&   end > mid){
+            while (start >= left &&  end > mid){
                 if (array[start] < array[end]){
                     temp[t--] = array[end--];
                 }else {

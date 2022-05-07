@@ -1,4 +1,4 @@
-package offer;
+package leetcode.dynamicprograming;
 
 public class backPack2 {
     public static int knapSack(int[] w, int[] v, int C) {

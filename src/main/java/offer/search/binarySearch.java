@@ -5,6 +5,8 @@ package offer.search;/**
  * @date: 2022-02-06 19:41
  **/
 
+import java.util.*;
+
 /**
  @ClassName binarySearch
  @Description
@@ -13,6 +15,8 @@ package offer.search;/**
  **/
 public class binarySearch {
     public static int findNthDigit (int n) {
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
         // write code here
         // 0
         // 1 ~ 9      | digit = 1 start = 1 * 1       count = 1 * 9 * 1
@@ -25,6 +29,12 @@ public class binarySearch {
             start *= 10;
             digit += 1;
             count = start * 9 * digit;
+        }
+
+        HashMap<String,String> map = new HashMap<>();
+        map.put("a","1");
+        for(Map.Entry entry:  map.entrySet()){
+            String key = (String) entry.getKey();
         }
         // 找到当前位数的区间了
         String num = (start + (n - 1) / digit) + ""; // 减去第0号元素0
