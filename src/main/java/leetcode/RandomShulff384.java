@@ -1,5 +1,7 @@
 package leetcode;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -24,6 +26,8 @@ import java.util.Random;
 public class RandomShulff384 {
     public static void main(String[] args) {
         int[] nums = {1, 2, 3};
+        ArrayList<Integer> list = new ArrayList<>();
+        StringBuilder sb = new StringBuilder();
 
         RandomShulff384 test = new RandomShulff384(nums);
 
@@ -55,11 +59,11 @@ public class RandomShulff384 {
                 int n = randRange(i + 1, copy.length);
                 swap(copy, i, n);
             }
-            HashMap<String,String> map = new HashMap(){{put("+","+");}};
             return copy;
         }
 
         private int randRange ( int min, int max){
+
             return random.nextInt(max - min) + min;
         }
 

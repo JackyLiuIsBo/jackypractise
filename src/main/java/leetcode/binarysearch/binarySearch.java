@@ -43,6 +43,7 @@ public class binarySearch {
     }
     public static void main(String[] args) {
         int [] nums = {1,2,3,3,3,5,7};
+        int[] arrays = new int[4];
         int target = 3;
         int leftSearch = leftSearchTest(nums, 3);
         System.out.println("leftSearch: " + leftSearch);
@@ -63,6 +64,7 @@ public class binarySearch {
             }
         }
         return left;
+
     }
 
     private static int rightSearchTest(int[] nums,int target){
@@ -77,6 +79,7 @@ public class binarySearch {
                 right = mid;
             }
         }
+        Long temp = 3232l;
         return left - 1;
     }
 
